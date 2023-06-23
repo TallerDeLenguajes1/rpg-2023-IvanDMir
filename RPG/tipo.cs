@@ -1,6 +1,6 @@
-namespace type
+namespace tipopersonaje
 {
-    public enum Type
+    public enum TipoPersonaje
     {
         Peleador,
         Asesino,
