@@ -17,18 +17,18 @@ namespace Fabrica {
                 Nuevo.Fuerza=random.Next(7,11);
                 Nuevo.Velocidad = random.Next(3,6);
                 Nuevo.Destreza = random.Next(1,4);
-                Nuevo.Nivel = random.Next(1,11);
+                Nuevo.Nivel = random.Next(1,5);
                 Nuevo.Armadura = random.Next(3,5);
                 Nuevo.Salud = random.Next(50,80);
                 Nuevo.FecNac = start.AddDays(random.Next(range));
-                Nuevo.Edad = start.Year - Nuevo.FecNac.Year;
+                Nuevo.Edad =  Nuevo.FecNac.Year - start.Year;
             }
 
                 if (Nuevo.Tipo == TipoPersonaje.Asesino){
                 Nuevo.Fuerza=random.Next(7,11);
                 Nuevo.Velocidad = random.Next(7,11);
                 Nuevo.Destreza = random.Next(2,4);
-                Nuevo.Nivel = random.Next(1,11);
+                Nuevo.Nivel = random.Next(1,5);
                 Nuevo.Armadura = random.Next(1,3);
                 Nuevo.Salud = random.Next(30,55);
                 Nuevo.FecNac = start.AddDays(random.Next(range));
@@ -38,17 +38,17 @@ namespace Fabrica {
                 Nuevo.Fuerza=random.Next(9,11);
                 Nuevo.Velocidad = random.Next(5,11);
                 Nuevo.Destreza = random.Next(4,6);
-                Nuevo.Nivel = random.Next(1,11);
+                Nuevo.Nivel = random.Next(1,5);
                 Nuevo.Armadura = random.Next(1,2);
                 Nuevo.Salud = random.Next(30,45);
                 Nuevo.FecNac = start.AddDays(random.Next(range));
                 Nuevo.Edad = start.Year - Nuevo.FecNac.Year;
             }
             if (Nuevo.Tipo == TipoPersonaje.tanque){
-                Nuevo.Fuerza=random.Next(3,5);
+                Nuevo.Fuerza=random.Next(5,8);
                 Nuevo.Velocidad = random.Next(2,4);
-                Nuevo.Destreza = random.Next(1,2);
-                Nuevo.Nivel = random.Next(1,11);
+                Nuevo.Destreza = random.Next(1,3);
+                Nuevo.Nivel = random.Next(1,5);
                 Nuevo.Armadura = random.Next(8,11);
                 Nuevo.Salud = random.Next(80,101);
                 Nuevo.FecNac = start.AddDays(random.Next(range));
