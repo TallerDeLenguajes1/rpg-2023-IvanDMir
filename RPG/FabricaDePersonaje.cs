@@ -2,7 +2,8 @@ namespace Fabrica {
     using Personajes;
     using System.Text.Json;
     using tipopersonaje;
-
+    using System.Net;
+    using Api;
     public class FabricaDePersonajes {
     static DateTime start = new DateTime(1723, 1, 1);
     static int range = (DateTime.Today - start).Days;
@@ -102,5 +103,28 @@ public void mostrarPersonajes(List<personaje> lista)
 
             }
         }
+}
+    public static class usoAPI {
+        public static double? TraerProbabilidad() {
+            var url = $"https://api.genderize.io/?name=luc" ;
+            var request = (HttpWebRequest)WebRequest.Create(url);
+            request.Method = "GET";
+            request.ContentType = "*/*";
+            request.Accept = "*/*";
+            double probabilidad = 0;
+        
+        try{
+            using(HttpWebResponse Respuesta = (HttpWebResponse)request.GetResponse()){
+                using(StreamReader Leedor = new StreamReader (Respuesta.GetResponseStream())){
+                    var texto = Leedor.ReadToEnd();
+                    Root Item = JsonSerializer.Deserialize<Root>(texto);
+                    probabilidad = Item.count;
+                }
+            }
+        }catch (WebException Ex){
+            Console.WriteLine("Problemas a la hora de recibir probabilidad");
+        }
+    return probabilidad;
+    }
 }
 }

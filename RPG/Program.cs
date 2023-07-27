@@ -2,10 +2,11 @@
 using Personajes;
 using tipopersonaje;
 using System.IO;
+using Api;
 
 List<personaje>? ListaDePersonajes = new List<personaje>();
 string[] nombres = { "Jhin", "Ksante", "Karma","Irelia","Sejuani","Tryndamere","Yasuo","Aphelios","Renekton","Pikachu"};
-string[] apodo = { "Lautaro", "Juancho", "Iván","nacho Grande","Guty","Milico","Julieta","Tutu","Anita","Pachi"};
+string[] apodo = { "Lautaro", "Juancho", "Iván","nacho Grande","Guty","Milico","Valentina","Tutu","Anita","Pachi"};
 Random random = new Random();
 int ronda = 0;
 string? NombreArchivo = "personajes.json";
@@ -41,7 +42,7 @@ else {
 Console.WriteLine("Elija su personaje");
  for (int i = 0; i < ListaDePersonajes.Count; i++)
 {
-    Console.WriteLine( i + "-" + ListaDePersonajes[i].Apodo);
+    Console.WriteLine( i + "-" + ListaDePersonajes[i].Nombre);
 }
 int elegido ;
 string? Eleccion = Console.ReadLine();
@@ -108,6 +109,7 @@ if(control) {
                 }
                 if(DanioCritico == random.Next(0,11) && danio !=0){
                         Protagonista.Salud = Protagonista.Salud - (danio*2);
+                        
                         Console.WriteLine("Has recibido "+ danio + " De daño Critico\n");
                 }else {
                      Protagonista.Salud = Protagonista.Salud - danio;
@@ -119,8 +121,13 @@ if(control) {
             Console.WriteLine("Has perdido contra " + enemigo.Apodo +", Vuelve a intentarlo la proxima vez");
             break;
         }else {
-            // Posibilidad de un 2% de droppear cada objeto
-            int objeto = random.Next(0,51);
+    
+            var Probabilidad = usoAPI.TraerProbabilidad();
+            double? objetoDouble = Probabilidad % random.Next(0,51);
+            int objeto = (int)objetoDouble; 
+            Console.WriteLine("Su Objeto es " + objeto);
+            
+
             Console.WriteLine("Has Ganado a " + enemigo.Apodo +", has recuperado tu salud y has subido de nivel");
              if (objeto == 0){
                 Console.WriteLine("Has encontrado Un Filo infinito,¡¡tu Fuerza Aumenta en 5 !!");
